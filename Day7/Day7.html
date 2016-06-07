@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        ul {
+            list-style: none;
+            border: 1px solid #000000;
+            height: 260px;
+            width: 200px;
+            float: left;
+            margin: 20px;
+            overflow: scroll;
+        }
+
+        ul > li {
+            width: 200px;
+        }
+
+        .t1 {
+            width: 200px;
+            height: 25px;
+            float: left;
+            position: absolute;
+            top: 305px;
+            left: 22px;
+        }
+
+        .t2 {
+            height: 31px;
+            background-color: #317ef3;
+            color: white;
+            outline: none;
+            border: 0px;
+            float: left;
+            position: absolute;
+            left: 224px;
+            top: 305px;
+        }
+    </style>
+</head>
+<body>
+<ul id="box1">
+    <li><h2><input type="checkbox" onclick="add(this)"/>语文</h2></li>
+    <li><h2><input type="checkbox" onclick="add(this)"/>数学</h2></li>
+    <li><h2><input type="checkbox" onclick="add(this)"/>英语</h2></li>
+    <li><h2><input type="checkbox" onclick="add(this)"/>化学</h2></li>
+    <li><h2><input type="checkbox" onclick="add(this)"/>生物</h2></li>
+</ul>
+<ul id="box2"></ul>
+<input type="text" class="t1" id="t1"/>
+<input type="button" value="添加" class="t2" onclick="add1()"/>
+<script>
+    var b1 = document.getElementById('box1');
+    var b2 = document.getElementById('box2');
+    function add(a) {
+        if (a.parentElement.parentElement.parentElement.id == 'box1') {
+            b1.removeChild(a.parentElement.parentElement);
+            b2.appendChild(a.parentElement.parentElement);
+        } else {
+            b2.removeChild(a.parentElement.parentElement);
+            b1.appendChild(a.parentElement.parentElement);
+        }
+    }
+    function add1() {
+        var t = document.getElementById('t1');
+        console.log(t.value);
+        if(t.value == ''){
+            alert('请输入！')
+        }else{
+            var te = document.createTextNode(t.value);
+            var l = b1.querySelector('li');
+            var cl = l.cloneNode(l);
+            cl.childNodes.item(0).replaceChild(te,cl.childNodes.item(0).childNodes.item(1));
+            b1.appendChild(cl);
+        }
+
+    }
+
+</script>
+</body>
+</html>

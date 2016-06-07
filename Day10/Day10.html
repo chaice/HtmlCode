@@ -1,0 +1,130 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        ul {
+            width: 135px;
+            height: 234px;
+            float: left;
+            border: 1px solid black;
+            border-radius: 5px;
+            margin-left: 23px;
+            margin-top: 13px;
+            list-style: none;
+            padding-top: 13px;
+            overflow: scroll;
+        }
+
+        li {
+            font-size: 25px;
+            position: relative;
+            right: 9px;
+        }
+
+        .in1 {
+            width: 155px;
+            height: 35px;
+            margin:8px 0px 8px 8px;
+            position: absolute;
+            top: 282px;
+            left: 23px;
+        }
+
+        .in2 {
+            width: 53px;
+            height: 41px;
+            outline: 0px;
+            margin-top: 8px;
+            border: none;
+            position: absolute;
+            top: 282px;
+            left: 190px;
+            color: white;
+            font-size: 15px;
+            background-color: #3388ff ;
+
+        }
+        div{
+            position: absolute;
+            left: 433px;
+            top: 261px;
+            font-size: 23px;
+        }
+    </style>
+</head>
+<body>
+<ul id="u1">
+    <li><input type="checkbox" onclick="oncl(this)"/>语文</li>
+    <li><input type="checkbox" onclick="oncl(this)"/>数学</li>
+    <li><input type="checkbox" onclick="oncl(this)"/>英语</li>
+    <li><input type="checkbox" onclick="oncl(this)"/>物理</li>
+    <li><input type="checkbox" onclick="oncl(this)"/>化学</li>
+</ul>
+<input type="text" name="text" class="in1"/>
+<input type="submit" value="添加" class="in2"/>
+<ul id="u2">
+
+</ul>
+<div id="d">u1中有5个选项，u2中有0个</div>
+<script>
+    var d1 = document.querySelector('#u1');
+    var d2 = document.querySelector('#u2');
+    var in1 = document.querySelector('.in1');
+    var in2 = document.querySelector('.in2');
+    d2.style.visibility = 'hidden';
+    function oncl(e) {
+        if (e.parentElement.parentElement.id == 'u1') {
+            d1.removeChild(e.parentElement);
+            d2.appendChild(e.parentElement);
+            var d = document.querySelector('#d');
+            var dl1 = document.querySelectorAll('#u1>li');
+            var dl2 = document.querySelectorAll('#u2>li');
+            d.innerHTML = 'u1中有'+dl1.length +'个选项,u2中有'+dl2.length+'个选项';
+            if(dl2.length != 0){
+                d2.style.visibility = 'visible';
+            }
+            if(dl1.length == 0 ){
+                d1.style.visibility = 'hidden';
+            }
+        } else {
+            d2.removeChild(e.parentElement);
+            d1.appendChild(e.parentElement);
+            var d = document.querySelector('#d');
+            var dl1 = document.querySelectorAll('#u1>li');
+            var dl2 = document.querySelectorAll('#u2>li');
+            d.innerHTML = 'u1中有'+dl1.length +'个选项,u2中有'+dl2.length+'个选项';
+            if(dl1.length != 0){
+                d1.style.visibility = 'visible';
+            }
+            if(dl2.length == 0 ){
+                d2.style.visibility = 'hidden';
+            }
+        }
+    }
+    in2.onclick = function () {
+        var l = document.createElement('li');
+        var input = document.createElement('input');
+        var text = document.createTextNode(in1.value);
+        if (in1.value == '') {
+            alert('请输入!')
+        }else{
+            input.setAttribute('type', 'checkbox');
+            input.setAttribute('onclick', 'oncl(this)');
+            l.appendChild(input);
+            l.appendChild(text);
+            d1.appendChild(l);
+            in1.value = '';
+            var d = document.querySelector('#d');
+            var dl1 = document.querySelectorAll('#u1>li');
+            var dl2 = document.querySelectorAll('#u2>li');
+            d.innerHTML = 'u1中有'+dl1.length +'个选项,u2中有'+dl2.length+'个选项';
+
+        }
+    }
+
+
+</script>
+</body>
+</html>

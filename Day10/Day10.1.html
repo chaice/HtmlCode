@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="../css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="../fonts/FontAwesome.otf"/>
+    <style>
+        html, body {
+            margin: 0px;
+            padding: 0px;
+            background-image: url("../img/bg.jpg");
+        }
+
+        .d1 {
+            height: 50px;
+            text-align: center;
+            line-height: 50px;
+            background-color: white;
+        }
+
+        .d {
+            height: 221px;
+            width: 600px;
+            margin: 0px auto;
+
+        }
+
+        .d2 {
+            width: 600px;
+            height: 40px;
+            margin-top: 20px;
+            background-color: rgb(82, 111, 124);
+            line-height: 40px;
+            border-radius: 1px;
+
+        }
+
+        .d2 input {
+            width: 584px;
+            height: 15px;
+            padding: 0px 8px;
+            border: none;
+            background-color: transparent;
+            font-size: 13px;
+            outline: none;
+            /*text-shadow: 0 1px 2px rgba(0,0,0,0.8)*/
+        }
+
+        ::-webkit-input-placeholder {
+            color: white;
+        }
+
+        ul {
+            list-style: none;
+            margin: 20px 0px;
+            padding: 0px;
+        }
+
+        .li{
+            height: 38px;
+            margin-bottom: 3px;
+            background-color: rgb(229, 237, 240);
+            line-height: 38px;
+        }
+
+        a{
+            font-size: 13px;
+            color: white;
+            background-color: rgb(82, 111, 124);
+            width: 91px;
+            text-align: center;
+            visibility: hidden;
+            text-decoration: none;
+        }
+        #box2>li{
+            text-decoration: line-through;
+            color: #7f8c8d;
+        }
+        #box2{
+            visibility: hidden;
+        }
+    </style>
+</head>
+<body>
+<div class="d1">
+    <i class="fa fa-tasks fa-lg">&nbsp;TodoList</i>
+</div>
+<div class="d">
+    <div class="d2">
+        <input type="text" id="text" placeholder="+添加一个任务"/>
+    </div>
+    <ul id="box1">
+
+    </ul>
+    <a href="#box2"></a>
+    <ul id="box2">
+
+    </ul>
+</div>
+<script>
+    var d = [{'task': '购买一个五号电池', 'fin': false},
+        {'task': '给公司发邮件', 'fin': false}, {'task': '学习', 'fin': false}];
+    var b1 = document.querySelector('#box1');
+    var b2 = document.querySelector('#box2');
+    var a = document.querySelector('.d>a');
+    a.onclick = function(){
+        b2.style.visibility = 'visible';
+    }
+    function oncl(e){
+        if(e.parentElement.parentElement.id = 'box1'){
+            b1.removeChild(e.parentElement);
+            b2.appendChild(e.parentElement);
+            var inp = document.querySelectorAll('#box2>li');
+            a.innerHTML = inp.length+'个已完成的任务';
+            a.style.visibility = 'visible';
+        }else{
+            b2.removeChild(e.parentElement);
+            b1.appendChild(e.parentElement);
+        }
+    }
+    for( var n in d){
+        var li = document.createElement('li');
+        var input = document.createElement('input');
+        var text = document.createTextNode(d[n].task);
+        input.setAttribute('type','checkbox');
+        input.setAttribute('onclick','oncl(this)');
+        li.appendChild(input);
+        li.appendChild(text);
+        li.setAttribute('class','li');
+        if(d[n].fin){
+            b2.appendChild(li);
+        }else{
+            b1.appendChild(li);
+        }
+    }
+    var text = document.querySelector('#text');
+    text.onkeyup = function(e){
+        if(e.keyCode == 13){
+            if(text.value == ''){
+                return;
+            }else{
+                add();
+                text.value ='';
+            }
+        }
+    }
+    function add(){
+        console.log(text);
+        var li = document.createElement('li');
+        var inp = document.createElement('input');
+        var te = document.createTextNode(text.value);
+        inp.setAttribute('type','checkbox');
+        inp.setAttribute('onclick','oncl(this)');
+        li.appendChild(inp);
+        li.appendChild(te);
+        li.setAttribute('class','li');
+        b1.appendChild(li);
+    }
+
+
+
+
+</script>
+</body>
+</html>

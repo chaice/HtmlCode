@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    (function(){
+        //构造函数 创建同类对象
+//        function User(name,age){
+//            this.name = name;
+//            this.age = age;
+//            this.showName = function(){
+//                console.log(this.name);
+//            }
+//        }
+        //原型
+//        function User(){
+//
+//        }
+//        User.prototype.name = 'tom';
+//        User.prototype.showName = function(){
+//            console.log(this.name);
+//        }
+        //混合模式
+//        function Usr(name ,age){
+//            this.name = name;
+//            this.age = age ;
+//        }
+//        User.prototype.showName = function(){
+//            console.log(this.name);
+//        }
+        //构造函数 继承
+//        function User(name,age){
+//            this.name = name;
+//            this.age = age;
+//        }
+//        function Stu(name,age,like){
+//            this.temp = User;
+//            this.temp(name,age);
+//            this.like =like;
+//            delete this.temp;
+//        }
+//        var s = new Stu('tom',14);
+//        console.log(s.name);
+        //原型继承
+//        function User(){
+//            this.name = 'tom';
+//            this.age = 13;
+//        }
+//        function Stu(){
+//
+//        }
+//        Stu.prototype = new User( );
+//        var s = new Stu();
+//        console.log(s.name);
+        //混合模式继承
+        function User(name,age){
+            this.name = name;
+            this.age = age;
+        }
+        User.prototype.showName = function(){
+            console.log(this.name);
+        }
+        function Stu(){
+            User.call(this,name,age);
+        }
+        Stu.prototype = new User();
+        var s = new Stu();
+        s.name = 'tom';
+        s.age = 13;
+        s.showName();
+
+
+
+    })();
+</script>
+</body>
+</html>

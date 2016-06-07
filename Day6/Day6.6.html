@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<!--计时器-->
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>计时器</title>
+    <script src="format.js"></script>
+</head>
+<body>
+<h1 id="h1">00:00:00</h1>
+<a href="javascript:reset()">reset</a>
+<a href="javascript:start()" id="a2">start</a>
+<script>
+    var ti = 0;
+    var s = false;
+    function click() {
+        if (s) {
+            var x = document.getElementById('h1');
+            var t = new Date(ti += 10);
+            x.innerHTML = t.time('mm:ss:SS');
+            setTimeout(click, 10);
+        }
+    }
+    function start(){
+        s = !s;
+        click();
+        var x = document.getElementById('a2');
+        x.innerHTML = s?'stop':'start';
+    }
+    function reset(){
+        var x = document.getElementById('h1');
+        x.innerHTML = '00:00:00'
+    }
+</script>
+</body>
+</html>

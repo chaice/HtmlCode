@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>登陆</title>
+    <style>
+        span {
+            font-size: 12px;
+            color: red;
+            visibility: hidden;
+        }
+    </style>
+</head>
+<body>
+&nbsp;&nbsp;&nbsp;&nbsp;用户登录<br/><br/>
+
+<form action="#" id="mf">
+    用户名：<input type="text" name="name"/><span> *请输入用户名！</span><br/><br/>
+    密&nbsp;码：<input type="password" name="pwd"/><span> *请输入密码！</span><br/><br/>
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <button>登陆</button>
+</form>
+<script>
+    var inp = document.querySelectorAll('#mf>input');
+    var mf = document.querySelector('#mf');
+    var bu = document.querySelector('#mf>button');
+    console.log(bu);
+    mf.addEventListener('submit',function(e){
+        e.preventDefault();
+        console.log(e);
+        bu.disabled = true;
+        setTimeout(function(){
+            mf.submit();
+        },3000)
+    });
+    var i1, i2 = false;
+    inp[0].onblur = function () {
+        if (mf.elements['name'].value == '') {
+            console.log(this.nextSibling);
+            this.nextSibling.style.visibility = 'visible';
+        } else {
+            this.nextSibling.style.visibility = 'hidden';
+            i1 = true;
+        }
+    }
+    inp[1].onblur = function () {
+        if (mf.elements['pwd'].value == '') {
+            this.nextSibling.style.visibility = 'visible';
+        } else {
+            this.nextSibling.style.visibility = 'hidden';
+            var p = mf.elements['pwd'].value;
+            var r = /(\d{6,})/;
+            console.log(r.test(p));
+            if(!r.test(p)){
+                console.log(this);
+                alert("密码错误，请重新输入！")
+            }else{
+                i2 = true;
+            }
+        }
+    }
+</script>
+</body>
+</html>

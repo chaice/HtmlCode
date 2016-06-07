@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>CC</title>
+
+    <script src="format.js"></script>
+</head>
+<body>
+<h1 id="my"></h1>
+<script>
+    //    var i = confirm('请确认！');
+    //    console.log(i);
+    //    alert('xxxxx');
+    //    print();
+    //   var name = prompt('请输入你的名字：');
+    console.log(navigator);
+    console.log(location.host);
+    //    var i =confirm('Are you sure?')
+    //    if( i ){
+    //        location.replace('http://www.baidu.com');
+    //    } else{
+    //        console.log('ok');
+    //    }
+    //    setInterval(function(){
+    //        console.log('123')
+    //    },555)
+
+    var x = document.getElementById('my');
+//    setInterval(function () {
+//        x.innerText = new Date();
+//    }, 1000)
+    function loop() {
+        x.innerText = new Date().time('hh:mm:ss SSS');
+        setTimeout(loop, 500);
+    }
+    loop();
+
+
+</script>
+</body>
+</html>

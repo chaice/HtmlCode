@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<form action="#">
+    <input type="text" name="name"/><br/><br/>
+    <input type="password" name="pwd"/><br/><br/>
+    <input type="submit"/>
+</form>
+<div class="myerror"></div>
+<script src="../js/jquery-2.2.3.min.js"></script>
+<script src="../js/jquery.validate.min.js"></script>
+<script>
+    //    $('form').validate();
+    $('form').validate({
+        rules: {
+            name: {
+                required: true
+            },
+            pwd: {
+                required: true,
+                minlength: 6
+            }
+        },
+        messages: {
+            name: {
+                required: ' 请输入用户名！'
+            },
+            pwd: {
+                required: ' 请输入密码！',
+                minlength: ' 密码长度不得少于{0}位'
+            }
+        },
+        submitHandler:function(form){
+            alert('xxxx');
+        },
+        focusInvalid:false,
+        errorPlacement:function(error,element){
+            $.each(error,function(index,value){
+                $('.myerror').html($('.myerror').html()+$(value).html()+'<br/>')
+            })
+        }
+    })
+
+</script>
+</body>
+</html>

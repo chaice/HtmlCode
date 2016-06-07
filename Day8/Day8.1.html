@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+<script>
+    var ta = document.createElement('table')
+    ta.border = 2;
+    ta.width = '100%';
+//    caption.innerText = '人员表';
+    var bo = document.createElement('tbody');
+    ta.appendChild(bo);
+    bo.insertRow(0);
+    bo.rows[0].insertCell(0);
+    bo.rows[0].cells[0].appendChild(document.createTextNode('Tom'));
+    bo.rows[0].insertCell(1);
+    bo.rows[0].cells[1].appendChild(document.createTextNode('14'));
+    bo.rows[0].insertCell(2);
+    bo.rows[0].cells[2].appendChild(document.createTextNode('男'));
+    document.getElementsByTagName('body').item(0).appendChild(ta);
+</script>
+</body>
+</html>

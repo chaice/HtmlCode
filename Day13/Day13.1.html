@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="../css/font-awesome.min.css"/>
+    <script>
+        var d=150;
+        var large=0;
+
+        var x0=d*2;
+        var y0=d*1.8;
+        /* 每根轮条画作一个貌似箭头的多边形。多边形顶点位置，
+         * 按逆时针旋转，依次用x和y整型数组表示。 */
+        var x =new Array( d/30, d/30, d/7.5,   0, -d/7.5,  -d/30,-d/30);
+        var y =new Array(0,-d*1.33,-d*1.33,-d*1.66,-d*1.33,-d*1.33, 0);
+
+        var color =new Array(20); //准备为20根轮条配颜色
+
+        function createColor(){
+            for (var i=0;i<20;i++)
+                color[i]=randomColor();
+        }
+
+        function randomColor(){
+            var s ="#";
+            for (var i=0;i<3;i++)
+                s += Math.floor(Math.random()*16).toString(16);
+            return s;
+        }
+
+        var xLeft=0;
+        var eastwards=1;
+
+        function shiftPolygon(){
+            if (xLeft==550) eastwards=0;
+            if (xLeft==0) eastwards=1;
+            if (eastwards==1) xLeft++;
+            else xLeft--;
+            document.getElementById("polygon").style.left=xLeft +"px";
+        }
+
+        function locate(){
+            var canvas =document.getElementById("polygon");
+            var g2D =canvas.getContext("2d");
+            g2D.translate(x0,y0);
+        }
+        function fillPolygon(x,y, color, ctx){
+            ctx.beginPath();
+            ctx.moveTo(x[0],y[0]);
+            for(var i=1; i<x.length; i++)
+                ctx.lineTo(x[i],y[i]);
+            ctx.closePath();
+            ctx.fillStyle=color;
+            ctx.fill();
+        }
+
+        function wheel(){
+            var canvas =document.getElementById("polygon");
+            var g2D =canvas.getContext("2d");
+            g2D.clearRect(-300,-300,600,600);
+            var x =new Array( d/30, d/30, d/7.5,   0, -d/7.5,  -d/30,-d/30);
+            var y =new Array(0,-d*1.33,-d*1.33,-d*1.66,-d*1.33,-d*1.33, 0);
+            for (var i=0;i<20;i++){
+                fillPolygon(x,y, color[i], g2D);
+                g2D.rotate(Math.PI/10);
+            }
+            g2D.beginPath();
+            g2D.arc(0,0,d*1.73,0,2*Math.PI);
+            g2D.lineWidth=d/7.5;
+            g2D.strokeStyle="brown";
+            g2D.stroke();
+            if (eastwards==1)
+                g2D.rotate(Math.PI/100);
+            else if (eastwards==0)
+                g2D.rotate(-Math.PI/100);
+            if (d==50) large=1;
+            if (d==150) large=0;
+
+            if (large==1)
+                d++;
+            if (large==0)
+                d--;
+        }
+
+        function preparation(){
+            createColor();
+            locate();
+            setInterval('wheel()',50);
+            setInterval('shiftPolygon()',50);
+        }
+    </script>
+    <style>
+        #polygon{
+            position:absolute;
+            left:0px;
+            top:0px;
+            z-index:5;
+        }
+    </style>
+</head>
+<body onLoad="preparation()">
+<canvas id="polygon" width="600" height="700">
+    <p>Your browserdoes not support the canvas element!</p>
+</canvas>
+</body>
+</html>

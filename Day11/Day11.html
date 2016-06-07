@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="../js/jquery-2.2.3.min.js"></script>
+    <style>
+        div{
+            width: 55px;
+            height: 55px;
+            /*line-height: 55px;*/
+            /*text-align: center;*/
+            margin-top: 56px;
+        }
+        .dd{
+            background-color: gray;
+        }
+        .d1{
+            background-color: #317ef3;
+        }
+        .d2{
+            background-color: cyan;
+        }
+        .d3{
+            background-color: darkviolet;
+        }
+    </style>
+
+</head>
+<body>
+<div id="d1" class="dd">
+    <li id="l">qqq</li>
+    <li>fff</li>
+    <li>xxx</li>
+</div>
+<div id="d2" class="dd">
+    <li>zzz</li>
+    <li>jjj</li>
+</div>
+<p>xxxx</p>
+<input type="checkbox"/>
+<input type="submit"/>
+<script>
+//    $('#d1').css('background-color','#ff1');
+//    $('#d2').css('background-color','#1ff');
+//    $('#d3').css('background-color','#f1f');
+//    $('div:first').css('background-color','#f34');
+//    $('div:last').css('background-color','#f58');
+//    $('#d2+p').css('color','green');
+//    $('li:first-child').css('background-color','green');
+//    $('li:last-child').css('color','white');
+//    $('li:only-child').parent().css('background-color','blue');
+//    $('li:nth-child(2)').css('background-color','black')
+//    console.log($('#d1').html());
+//    console.log($('#d1').text());
+//    $('input').attr('type',function(index,value){
+//        console.log(index);
+//        console.log(value);
+//        console.log(value+(index+1)+'checkbox');
+//        return 'checkbox'});
+//    console.log($('#d1').css('background-color'))
+//    $('#d1').addClass('c');
+    var box = $('#d1').css(['width','height']);
+    $('div').each(function(index,element){
+        console.log(index+':'+element);
+    });
+   var count = 0;
+//    $('div').click(function () {
+//        $(this).toggleClass('d1');
+//        if($(this).hasClass('d1')){
+//            $(this).removeClass('dd');
+//        }else{
+//            $(this).toggleClass('d2');
+//            if($(this).hasClass('d2')) {
+//                $(this).removeClass('d1');
+//            } else{
+//                $(this).toggleClass('d3');
+//            }
+//        }
+//    });
+    $('div').click(function(){
+        $(this).toggleClass(function(index,className,switchBool){
+            console.log(index+':'+className +':'+switchBool);
+            return $(this).hasClass('dd')? 'd1':'dd';
+        })
+    })
+    $('div').click(function(){
+        $(this).width(function(index,value){
+            return value-1;
+        })
+    })
+    $('#l').after('<div>这是新插的</div>');
+    console.log($('input').get(1));
+</script>
+</body>
+</html>

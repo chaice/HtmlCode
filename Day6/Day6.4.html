@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="format.js"></script>
+</head>
+<body>
+<h1 id="cl">00:00:000</h1>
+<a href="javascript:reset()">reset</a>
+<a href="javascript:start()" id="s">start</a>
+<script>
+    var ti = 0 ;
+    var s = false;
+    function clock(){
+        if(s){
+            var dg1 = document.getElementById('cl');
+            var t = new Date(ti+=10);//10是毫秒数
+            dg1.innerHTML = t.time('mm:ss:SSS');
+            setTimeout(clock,15);
+        }
+    }
+    function start(){
+        s = !s;
+        clock();
+        var dg2 = document.getElementById('s');
+        dg2.innerHTML = s?'stop':'start';
+    }
+    function reset(){
+        var dg3 = document.getElementById('cl');
+        dg3.innerText = '00:00:000'
+    }
+</script>
+</body>
+</html>

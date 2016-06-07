@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    (function(){
+        //javaScript继承 ，1.对象冒充
+        //1.对象冒充，可以实现多重继承。使用对象冒充要创建临时方法，使用后要及时删除（防止对接下来代码造成隐患
+//        function User(name,age){
+//            this.name = name;
+//            this.age = age ;
+//        }
+//        function Student(name ,age){
+//            this.temp = User;
+//            this.temp(name,age);
+//            delete this.temp;
+//            this.like = ['足球','篮球'];
+//        }
+//        var s= new Student('tom',18);
+//        console.log(s.name);
+        //2. A.call(B，A的参数任意个)方法、apple()方法。A为B要继承的函数
+//        function User(name,age){
+//            this.name = name;
+//            this.age = age;
+//        }
+//        function Student(name,age,like){
+//            User.call(this,name,age);
+//            this.like = like;
+//        }
+//        var s = new Student('tom',15,['']);
+//
+//        console.log(s.like);
+//        console.log(s.name);
+//        var o = new Object();
+//        o.name = 'jim';
+//        function Stu(age,like){
+//            this.age = age;
+//            this.like = like;
+//        }
+//        Stu.call(o);
+//        console.log(o.name+':');
+        //3.原型链,不支持多重继承，不能有参数(没有办法在不影响所有对象实例的情况下，给类型的构造函数传递参数
+        function User(name,age){
+            this.name = name;
+            this.age = age;
+        }
+        function Stu(like){
+            this.like = like;
+        }
+        Stu.prototype = new User('tom',15);
+        var s1 = new Stu(['足球','篮球']);
+
+        console.log(s.name);
+        console.log(s.age);
+        console.log(s.like);
+//        //4.混合模式
+//        function User(name){
+//            this.name = name;
+//        }
+//        User.prototype.showName = function(){
+//            console.log(this.name);
+//        }
+
+    })();
+</script>
+</body>
+</html>

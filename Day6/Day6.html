@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>CC</title>
+</head>
+<body>
+<script>
+    (function() {
+        //javaScript面向对象设计,创建某一类对象的方法：1.工厂模式：传入属性值，返回的是对象；2.构造函数模式；
+        // 3.原型模式；4.混合模式。
+        //    //1.工厂模式，缺点：无法知道对象的具体类型，每个对象都是独立存在的
+        //    function creat(name,age){
+        //        var o = new Object();
+        //        o.name = name;
+        //        o.age = age;
+        //        o.sayname = function(){
+        //            console.log(this.name);
+        //        };
+        //        return o;
+        //    }
+        //    var u = new creat('tom',14);
+        //    console.log(typeof u);
+        //    u.sayname();
+        //2.构造函数模式，①缺点：创建多个对象时，会创建多个function浪费资源。 ②会造成多个全局函数存在
+//        function User(name, age) {
+//            this.name = name;
+//            this.age = age;
+////        this.sayname = function () {//①
+////            console.log(this.name)
+////        }
+//            this.sayname = sayname;//②
+//        }
+//
+//        function sayname() {
+//            console.log(this.name);
+//        }
+//
+//        var u = new User('jim', 23);
+//        console.log(typeof u);
+//        console.log(u instanceof User);
+//        u.sayname();
+        //3.原型模式,缺点：不能传入参数，对象引用属性时会发生共享
+//        function User(){
+//
+//        };
+//        User.prototype.name = 'tom';
+//        User.prototype.age = 17;
+//        User.prototype.like = ['足球','篮球'];
+//        User.prototype.sayname = function(){
+//            console.log(this.name);
+//        }
+//        var u1 = new User();
+//        u1.sayname();
+//        var u2 = new User();
+//        u2.name = 'jim';
+//        u2.sayname();
+//        u2.like.push('排球');
+//        console.log('u1:'+u1.like);//属性共享！！！
+//        console.log('u2:'+u2.like);
+        //4.混合模式,构造模式+原型模式，解决属性共享、不能传入参数、创建多个对象function的浪费等问题
+//        function User(name,age){
+//            this.name = name;
+//            this.age = age;
+//            this.like = ['排球','足球'];
+//        }
+//        User.prototype.sayname = function(){
+//            console.log(this.name);
+//        }
+//        var u1 = new User('tom',18);
+//        u1.sayname();
+//        var u2 = new User('jim',23);
+//        u2.sayname();
+//        u2.like.push('篮球');
+//        console.log('u1:'+u1.like);
+//        console.log('u2:'+u2.like);
+        //5.动态原型模式，当没有为User原型设置sayname则使用默认定义
+//        function User(name,age){
+//            this.name =name;
+//            this.age = age;
+//            if(typeof this.sayname != 'function'){
+//                User.prototype.sayname = function(){
+//                    console.log(this.name);
+//                }
+//            };
+//        }
+//        var u = new User('tom',23);
+//        u.sayname();
+
+    })();
+</script>
+</body>
+</html>

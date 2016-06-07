@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>登陆</title>
+    <style>
+        html, body {
+            height: 100%;
+        }
+
+        .d {
+            width: 300px;
+            height: 300px;
+            position: absolute;
+            top: 20%;
+            left: 40%;
+            border: solid 1px black;
+            background-color: lightgreen;
+            box-shadow: 2px 3px 2px gray ;
+        }
+
+        .d1 {
+            height: 120px;
+            width: 300px;
+            margin-top: 30px;
+        }
+
+        span {
+            visibility: hidden;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+<div class="d">
+    <img src="bd_logo1.png" alt="百度" style="width: 300px;height: 130px; "/>
+    <!--<hr />-->
+    <div class="d1">
+        <form action="#" id="mf">
+            <table>
+                <tr>
+                    <td>&nbsp;用户名：</td>
+                    <td><input type="text" name="name" id="in1"/></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><span>*请输入用户名!</span></td>
+                </tr>
+                <tr>
+                    <td>&nbsp;密&nbsp;码：</td>
+                    <td><input type="password" name="pwd" id="in2"/></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><span>*请输入密码!</span></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <button>登陆</button>
+                        &nbsp;&nbsp;<a href="http://localhost:63342/htmlcode/Day9/Day9.1.html">注册</a></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</div>
+<script>
+    var mf = document.querySelector('#mf');
+    var i = document.querySelectorAll('#mf input');
+    var sp = document.querySelectorAll('#mf span');
+    var bu = document.querySelector('#mf button');
+    mf.addEventListener('submit', function (e) {
+        e.preventDefault();
+        bu.disabled = true;
+        setTimeout(function () {
+            mf.submit();
+        }, 3000);
+
+    });
+    i[0].onblur = function () {
+        if (mf.elements['name'].value == '') {
+            sp[0].style.visibility = 'visible';
+        } else {
+            sp[0].style.visibility = 'hidden';
+        }
+    }
+    i[1].onblur = function () {
+        if (mf.elements['pwd'].value == '') {
+            sp[1].style.visibility = 'visible';
+        } else {
+            sp[1].style.visibility = 'hidden';
+            var r = /(\d{6,})/;
+            if (!r.test(mf.elements['pwd'].value)) {
+                alert('密码输入有误！')
+            }
+        }
+    }
+
+</script>
+</body>
+</html>

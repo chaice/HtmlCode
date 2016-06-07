@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>用户注册</title>
+    <style>
+        html, body {
+            height: 100%;
+        }
+
+        span {
+            visibility: hidden;
+            color: red;
+        }
+
+        .d1 {
+            position: absolute;
+            top: 30%;
+            left: 30%;
+            width: 545px;
+        }
+
+        .d2 {
+            text-align: center;
+            position: relative;
+            right: 80px;
+        }
+
+    </style>
+</head>
+<body>
+<div class="d1">
+    <div class="d2">
+        <p><h1>用户信息</h1></p>
+    </div>
+    <form action="#" id="mf">
+        <br/>
+            <table>
+                <tr>
+                    <td>&nbsp;用户名:</td>
+                    <td><input type="text" name="name" id="in1"/><span>&nbsp;*请输入用户名！</span></td>
+                </tr>
+                <tr>
+                    <td>&nbsp;密&nbsp;码：</td>
+                    <td><input type="password" name="pwd1" id="in2"/><span>&nbsp;*请输入密码！</span></td>
+                </tr>
+                <tr>
+                    <td>&nbsp;再次输入密码：</td>
+                    <td><input type="password" name="pwd2" id="in3"/><span>&nbsp;*请再次输入密码！</span></td>
+                </tr>
+                <tr>
+                    <td>&nbsp;&nbsp;<button>重置</button></td>
+                    <td><a href="http://localhost:63342/htmlcode/Day9/Day9.html" id="ca"><h4>注册</h4></a></td>
+                </tr>
+            </table>
+
+    </form>
+</div>
+
+<script>
+    var mf = document.querySelector('#mf');
+    var sp = document.querySelectorAll('#mf span');
+    var i = document.querySelectorAll('#mf input');
+    var ca = document.querySelector('#ca');
+    ca.onclick = function () {
+        confirm('注册完成，是否跳转到登陆页面?');
+//        document.body.innerHTML = '<h1>5s后跳转到登陆页面......</h1>'
+//        setTimeout(function () {
+//
+//        }, 5000)
+    }
+    i[0].onblur = function () {
+        if (mf.elements['name'].value == '') {
+            this.nextSibling.style.visibility = 'visible';
+        } else {
+            this.nextSibling.style.color = 'green';
+            var te = document.createTextNode(' √用户名可用！')
+            this.nextSibling.replaceChild(te, this.nextSibling.firstChild);
+            this.nextSibling.style.visibility = 'visible';
+        }
+    }
+    i[1].onblur = function () {
+        if (mf.elements['pwd1'].value == '') {
+            this.nextSibling.style.visibility = 'visible';
+        } else {
+            var r = /(\d{6,})/
+            if (!r.test(mf.elements['pwd1'].value)) {
+                var te = document.createTextNode(' *密码必须为0-9之间的数字，且六位以上！')
+                this.nextSibling.replaceChild(te, this.nextSibling.firstChild);
+                this.nextSibling.style.visibility = 'visible';
+            } else {
+                this.nextSibling.style.visibility = 'hidden';
+            }
+        }
+    }
+    i[2].onblur = function () {
+        if (mf.elements['pwd2'].value == '') {
+            this.nextSibling.style.visibility = 'visible';
+        } else {
+            if (mf.elements['pwd1'].value == mf.elements['pwd2'].value) {
+                this.nextSibling.style.visibility = 'hidden';
+            } else {
+                var te = document.createTextNode(' *两次输入的密码不一致，请重新输入！')
+                this.nextSibling.replaceChild(te, this.nextSibling.firstChild);
+                this.nextSibling.style.visibility = 'visible';
+            }
+        }
+    }
+</script>
+</body>
+</html>

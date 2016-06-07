@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+        alert('</scr' + 'ipt>')
+    </script>
+    <script src="../js/js.js">
+    </script>
+</head>
+<body>
+<script>
+    var arr = ['1-1', '1-8', '3-4', '1-2', '4-3'];
+    arr.sort(function (a, b) {
+        var arr1 = a.split('-');
+        var arr2 = b.split('-');
+        if (Number(arr1[0]) > Number(arr2[0])) {
+            return 1;
+        } else if (Number(arr1[0]) < Number(arr2[0])) {
+            return -1;
+        } else {
+            if (Number(arr1[1]) > Number(arr2[1])) {
+                return 1;
+            } else if (Number(arr1[1]) < Number(arr2[1])) {
+                return -1;
+            } else {
+                return 0;
+            }
+        }
+    });
+    arr.forEach(function(t,i,a){console.log(t)+':'+console.log(i)});
+    function out() {
+        var i = 11;
+
+        function inner() {
+            console.log(i)
+        };
+        i++;
+        return inner;
+    }
+    ;
+    function Student() {
+        this.name = 'tom';
+        this.age = 23;
+        this.show = function(){
+            console.log(this.name + ':' + this.age);
+        };
+    }
+    var stu = new Student();
+    stu.show();
+    Student.prototype.study = function(){
+      console.log(this.name+'学习');
+    };
+    stu.study();
+    var st = new Student();
+    st.name = 'jim';
+    st.study();
+    st.show();
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<!--事件的绑定-->
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>事件绑定</title>
+    <style>
+        html,body{
+            height: 100%;
+        }
+        #di{
+            width:100%;
+            height: 50%;
+            background-color: aqua;
+        }
+        #di1{
+            width: 211px;
+            height: 211px;
+            line-height: 211px;
+            background-color: greenyellow;
+            color: black;
+            position: absolute;
+            top: 211px;
+            left: 411px;
+            text-align: center;
+            overflow: hidden;
+            border: solid 1px #000000;
+            font-size: 25px;
+        }
+        #di2{
+            color: black;
+            width: 211px;
+            height: 211px;
+            line-height: 211px;
+            background-color: greenyellow;
+            text-align: center;
+            overflow: hidden;
+            border: solid 1px #000000;
+            font-size: 25px;
+        }
+    </style>
+</head>
+<body>
+<div id="di">
+    div
+    <div id="di1">
+        div1
+    </div>
+</div>
+<div id="di2">
+    div2
+</div>
+<script>
+    var di = document.getElementById('di');
+    var di1 = document.getElementById('di1');
+    var di2 = document.getElementById('di2');
+    di.onclick = cli;
+    di1.onclick = cli;
+    di2.onclick = cli;
+    function cli(el) {
+        di1.innerText = '这是div';
+        console.log(el.target);
+        console.log(this);
+    }
+
+</script>
+</body>
+</html>
