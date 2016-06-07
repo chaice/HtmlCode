@@ -1,6 +1,6 @@
-# HTML code
+﻿# HTML code
 
-##ʾ��
+##示例
 
 ```html
 <html>
